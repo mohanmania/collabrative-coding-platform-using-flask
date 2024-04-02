@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="flag">
+    <input type="submit" class="button" id ="special"value="username" >
+    <div id="spcl"></div>
+    <script>
+        let sub=document.getElementById("special")
+        let datalel=document.getElementById("spcl")
+        let cname=document.getElementById("flag")
+        sub.addEventListener("click",loaded)
+            function loaded(){
+                if(cname.value){
+                let url =`https://restcountries.com/v3.1/${cname.value}`            
+
+                let xhr = new XMLHttpRequest()
+                xhr.open("GET","hii.json",true)
+                xhr.send()
+                xhr.onprogress=function(){
+                    confirm("are you sure")
+                    datalel.innerText="loading.."
+                }
+                xhr.onload=function(){
+                    alert("your attention")
+                    let result = xhr.responseText
+                    result=JSON.parse(result)
+                    let country=result
+                    console.log(country)
+                    datalel.innerHTML=`<img src=${country.flags.png}>`
+                }
+               
+            }
+            else 
+                
+                datalel.innerHTML="waiting.."
+
+                
+            }
+            
+   </script>
+</body>
+</html>
